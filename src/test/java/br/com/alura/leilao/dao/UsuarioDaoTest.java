@@ -46,6 +46,7 @@ class UsuarioDaoTest {
 	}
 
 
+	
 	@Test
 	void naoDeveriaEncontrarUsuarioNãoCadastrado() {
 		
@@ -54,7 +55,15 @@ class UsuarioDaoTest {
 	    		()->this.dao.buscarPorUsername("beltrano"));
 	    
 	}
-	
+	@Test	
+	public void deveriaRemoverUmUsuario() {
+		Usuario usuario = criarUsuario();
+		dao.deletar(usuario);
+		
+		 Assert.assertThrows(NoResultException.class, 
+		    		()->this.dao.buscarPorUsername("beltrano"));
+		
+	}
 	
 	private Usuario criarUsuario() {
 		
